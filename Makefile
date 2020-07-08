@@ -54,7 +54,7 @@ GOLANGCI_LINT := $(BIN_DIR)/golangci-lint
 #
 
 # All targets.
-.PHONY: lint test build container push
+.PHONY: lint test build doc
 
 # more info about `GOGC` env: https://github.com/golangci/golangci-lint#memory-usage-of-golangci-lint
 lint: $(GOLANGCI_LINT)
@@ -72,6 +72,9 @@ build:
 	  go build -i -v -o $(OUTPUT_DIR)/$${target}                                       \
 	  $(CMD_DIR)/$${target};                                                           \
 	done
+
+doc:
+	@go run cmd/doc/main.go
 
 .PHONY: clean
 clean:
